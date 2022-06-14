@@ -13,19 +13,19 @@ import java.util.List;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
-public class RoleRepositoryTests {
+class RoleRepositoryTests {
 
   @Autowired private RoleRepository roleRepository;
 
   @Test
-  public void testCreateFirstRole() {
+  void testCreateFirstRole() {
     Role roleAdmin = new Role("Admin", "Manage Everything");
     Role savedRole = roleRepository.save(roleAdmin);
-    Assertions.assertThat(savedRole.getId()).isGreaterThan(0);
+    Assertions.assertThat(savedRole.getId()).isPositive();
   }
 
   @Test
-  public void testCreateRestRole() {
+  void testCreateRestRole() {
     Role roleSalesPerson =
         new Role(
             "SalesPerson", "manage product price, customer, shipping, orders and sales report");
